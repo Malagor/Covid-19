@@ -1,12 +1,12 @@
 export function createCountriesHTML(el) {
   el.innerHTML = `<div class="countries-wrapper">
-  <div class="countries-title">Cases by country</div>
+  <div class="countries-title"></div>
   <input type="text" class="countries-input">
   <div class="countries-list"></div>
   <div class="toggle-cases">
-    <div class="btn-cases btn-all">All Cases</div>
-    <div class="btn-cases btn-deaths">Deaths</div>
-    <div class="btn-cases btn-recovered">Recovered</div>
+    <div class="btn-cases btn-all"></div>
+    <div class="btn-cases btn-deaths"></div>
+    <div class="btn-cases btn-recovered"></div>
   </div>
 </div>`;
 }

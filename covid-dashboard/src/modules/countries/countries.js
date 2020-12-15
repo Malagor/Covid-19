@@ -1,63 +1,42 @@
 // import Queries from '../queries/Queries';
 import { createCountriesHTML, getCountriesDomElement } from './countriesHTML';
 import createCountryDOMElement from './createCountryDOMElement';
-// import { properties } from '../Properties/Properties';
+import { properties } from '../Properties/Properties';
 
+let countriesElements = null;
+let changeView = null;
 
-export default function Countries(el) {
+const createTableCountries =(el) => {
   createCountriesHTML(el);
-  const countriesElements = getCountriesDomElement(el);
-  // console.log('countriesElements', countriesElements);
-  let changeView = null;
-  // const query = Queries();
-  
+
+  countriesElements = getCountriesDomElement(el);
+
   el.addEventListener('click', (event) => {
     const { target } = event;
     if (target === el) return;
-    // внести изменения в пропертис
+
+    properties.country = 'Belarus';
+
     changeView();
   });
+};
 
-  function setChangeView(fn) {
-    changeView = fn;
-  }
 
-  function renderCountries(countries) {
-    countries.sort((a,b) => b.arrData - a.arrData);
-    countriesElements.list.innerHTML = '';
-    countries.forEach((country) => {
-      const elem = createCountryDOMElement(country);   
-      countriesElements.list.append(elem);  
-    })
-  }
+function renderCountries(countries) {
+  countries.sort((a,b) => b.arrData - a.arrData);
+  countriesElements.list.innerHTML = '';
+  countries.forEach((country) => {
+    const elem = createCountryDOMElement(country);
+    countriesElements.list.append(elem);
+  })
+}
 
-  // function getTestData() {
-  //   const url = 'https://disease.sh/v3/covid-19/countries';
-  //   fetch(url)
-  //     .then((response) => {
-  //       return response.json();
-  //     }) 
-  //     .then((data) => {
-  //       return data.map((elem) => {
-  //         return {
-  //           country: elem.country,
-  //           arrData: elem.cases,
-  //           flag: elem.countryInfo.flag,
-  //         };
-  //       });
-  //     })
-  //     .then((countriesArray) => {
-  //       renderCountries(countriesArray);
-  //     });
-  // }
+function setChangeViewListener(fn) {
+  changeView = fn;
+}
 
-  // getTestData();
-
-  return  {
-    setHandler: {
-      setChangeView,
-    },
-    renderCountries
-  }
-
+export {
+  createTableCountries,
+  renderCountries,
+  setChangeViewListener
 }

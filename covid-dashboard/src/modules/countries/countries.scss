@@ -24,24 +24,30 @@
 
       .country-item {
         display: flex;
-        justify-content: space-between;
-        height: 30px;
+        justify-content: flex-start;
+        margin-bottom: 0.5rem;
+        //height: 30px;
 
-        .country-text {
-          display: flex;
+        //.country-text {
+        //  display: flex;
 
           .country-cases {
-            margin-left: 10px;
+            //margin-left: 10px;
             // font-size: 20px;
+
           }
 
           .country-name {
-            margin-left: 10px;
+            width: 100%;
           }
-        }
+        //}
 
         .country-flag {
           margin-right: 10px;
+          width: 3rem;
+          height: 1.5rem;
+          object-fit: cover;
+          flex-basis: 2rem;
         }
       }
     }
