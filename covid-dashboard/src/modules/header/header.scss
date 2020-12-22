@@ -11,7 +11,7 @@ header.header {
 .header__icon {
   width: 3rem;
   height: 100%;
-  background: black url("../../assets/img/virus.png");
+  background: black url("../../assets/img/virus.png") no-repeat;
   background-size: contain;
 }
 

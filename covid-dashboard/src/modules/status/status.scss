@@ -6,6 +6,21 @@
   align-items: center;
 
   grid-area: status;
+
+  select,
+  input {
+    background: none;
+    border: none;
+    color: #ffffff;
+  }
+
+  option {
+    background: black;
+    color: #ffffff;
+  }
+  option:checked {
+    background: #532001;
+  }
 }
 
 #status__type,
@@ -30,3 +45,6 @@
     color: $color-recovered;
   }
 }
+
+
+

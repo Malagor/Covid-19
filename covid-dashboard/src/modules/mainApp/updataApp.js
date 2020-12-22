@@ -17,6 +17,7 @@ import { updateCountryInPopupSetting } from '../settings/Settings';
 import { loaderOn } from '../loader/loader';
 
 export const updateApp = () => {
+  console.log(properties);
   saveProperties();
   updateStatusBar();
   updateCountryInPopupSetting();
@@ -107,12 +108,14 @@ export const updateApp = () => {
           const { resultArr, locCountry } = processingDataForChart(fullArrayCountries);
           changeChartData(resultArr, locCountry);
 
-          loaderOn(false);
-
         })
         .catch((err) => {
           console.log("I can't convert country data", err);
+        })
+        .finally(() => {
+          loaderOn(false);
         });
+
     })
     .catch((err) => {
       console.log("Can't get general data about countries!", err);
