@@ -1,7 +1,16 @@
 import { properties } from '../Properties/Properties';
 import { updateApp } from '../mainApp/updataApp';
+import { createListOfCountries } from '../settings/createListOfCountries';
+import { filterInputInPopup } from '../settings/fiterInputInPopup';
+import { localStorageCountryList } from '../mainApp/localStorageCountryList';
 
 let elementsDOM = null;
+let listOfCountries;
+
+setTimeout(() => {
+  listOfCountries = createListOfCountries('.status__list', 'status__item');
+  console.log (listOfCountries);
+}, 0);
 
 const setCurrentDate = (date) => {
   const options = {
@@ -54,7 +63,10 @@ const updateStatusBar = () => {
 const createStatusBar = (el) => {
   el.innerHTML =
     `<div class="status__date"></div>
-    <input class="status__country">
+    <div class="status__box">
+      <input class="status__country">
+      <ul class="status__list status__list_hide"></ul>
+    </div>
     <select id ="status__type">
       <option value="cases" class="cases">Cases</option>
       <option value="recovered" class="recovered">Recovered</option>
@@ -93,6 +105,31 @@ const createStatusBar = (el) => {
     updateApp();
   });
 
+  country.addEventListener('click', () => {
+    listOfCountries.classList.remove('status__list_hide');
+    document.querySelectorAll('.status-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          console.log ('click');
+          country.value = item.innerText;
+          listOfCountries.classList.add('status__list_hide');
+        });
+      });
+  });
+  
+  country.addEventListener('keyup', (e) => {
+    console.log ('countryclick');
+    filterInputInPopup(elementsDOM.country, '.status-item');
+    const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
+    list.unshift('All World');
+    if (e.code === 'Enter') {
+      if (list.includes(elementsDOM.country.value)) {
+        listOfCountries.classList.add('status__list_hide');
+      } else {
+        country.value = '';
+      }
+    }
+  });
+
   elementsDOM = {
     date,
     country,
@@ -106,6 +143,7 @@ const createStatusBar = (el) => {
 
   return elementsDOM;
 };
+
 
 export {
   createStatusBar,

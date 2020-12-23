@@ -20,7 +20,7 @@ let currElem;
 let listOfCountries;
 
 setTimeout(() => {
-  listOfCountries = createListOfCountries();
+  listOfCountries = createListOfCountries('.setting__list', 'setting-list-item');
 }, 0);
 
 const showPopup = (el) => {
@@ -82,7 +82,7 @@ const createSettings = () => {
   });
 
   elements.country.addEventListener('keyup', (e) => {
-    filterInputInPopup(elements.country);
+    filterInputInPopup(elements.country, '.setting-list-item');
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
     if (e.code === 'Enter') {
