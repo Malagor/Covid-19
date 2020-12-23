@@ -118,7 +118,7 @@ const updateStateSettingPopup = () => {
   let { country} = properties;
   const { population, period, type } = properties;
 
-  country = country || 'All world';
+  country = country || 'All World';
   elements.country.value = country;
   elements.period.checked = period;
   elements.population.checked = population;
