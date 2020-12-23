@@ -13,14 +13,14 @@ import { processingDataForMap } from './processingDataForMap';
 import { setMarksToMap } from '../map/map';
 import { localStorageCountryList } from './localStorageCountryList';
 import { updateStatusBar } from '../status/Status';
-import { updateCountryInPopupSetting } from '../settings/Settings';
+import { updateStateSettingPopup } from '../settings/Settings';
 import { loaderOn } from '../loader/loader';
 
 export const updateApp = () => {
   console.log(properties);
   saveProperties();
   updateStatusBar();
-  updateCountryInPopupSetting();
+  updateStateSettingPopup();
 
   let { period } = properties;
   if (typeof period === 'boolean') {

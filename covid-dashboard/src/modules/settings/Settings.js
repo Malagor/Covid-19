@@ -8,12 +8,11 @@
 
 import settingsHTML from './settingsHTML';
 import { properties, setProperties } from '../Properties/Properties';
-// eslint-disable-next-line import/no-cycle
 import { updateApp } from '../mainApp/updataApp';
 
 let popup;
 let form;
-let countryInput;
+const elements = {};
 
 const showPopup = (el) => {
   // getting the size and position of the calling element
@@ -50,7 +49,10 @@ const createSettings = () => {
 
   popup = document.querySelector('#popup');
   form = document.forms.settings;
-  countryInput = form.country;
+  elements.country = form.country;
+  elements.population = form.population;
+  elements.period = form.period;
+  elements.type = form.type;
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -64,16 +66,24 @@ const setSettingToggleElement = (el) => {
   });
 };
 
-const updateCountryInPopupSetting = () => {
-  let { country } = properties;
+const updateStateSettingPopup = () => {
+  let { country} = properties;
+  const { population, period, type } = properties;
 
   country = country || 'All world';
-  countryInput.value = country;
-};
+  elements.country.value = country;
+  elements.period.checked = period;
+  elements.population.checked = population;
 
+  elements.type.forEach(el => {
+    if (el.value === type) {
+      el.checked = true;
+    }
+  });
+};
 
 export {
   createSettings,
   setSettingToggleElement,
-  updateCountryInPopupSetting,
+  updateStateSettingPopup,
 };
