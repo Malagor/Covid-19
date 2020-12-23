@@ -15,12 +15,12 @@ import { localStorageCountryList } from '../mainApp/localStorageCountryList';
 
 let popup;
 let form;
-let countryInput;
+const elements = {};
 let currElem;
 let listOfCountries;
 
 setTimeout(() => {
-  listOfCountries = createListOfCountries();
+  listOfCountries = createListOfCountries('.setting__list', 'setting-list-item');
 }, 0);
 
 const showPopup = (el) => {
@@ -66,30 +66,33 @@ const createSettings = () => {
 
   popup = document.querySelector('#popup');
   form = document.forms.settings;
-  countryInput = form.country;
+  elements.country = form.country;
+  elements.population = form.population;
+  elements.period = form.period;
+  elements.type = form.type;
 
-  countryInput.addEventListener('click', () => {
+  elements.country.addEventListener('click', () => {
     listOfCountries.classList.remove('setting__list_hide');
-    document.querySelectorAll('.setting-list-item').forEach((item) => { 
+    document.querySelectorAll('.setting-list-item').forEach((item) => {
         item.addEventListener('click', () => {
-          countryInput.value = item.innerText;
+          elements.country.value = item.innerText;
           listOfCountries.classList.add('setting__list_hide');
         });
       });
   });
 
-  countryInput.addEventListener('keyup', (e) => {
-    filterInputInPopup(countryInput);
+  elements.country.addEventListener('keyup', (e) => {
+    filterInputInPopup(elements.country, '.setting-list-item');
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
     if (e.code === 'Enter') {
-      if (list.includes(countryInput.value)) {
+      if (list.includes(elements.country.value)) {
         listOfCountries.classList.add('setting__list_hide');
       } else {
-        countryInput.value = '';
+        elements.country.value = '';
       }
     }
-  }); 
+  });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -111,16 +114,24 @@ const setSettingToggleElement = (el) => {
   });
 };
 
-const updateCountryInPopupSetting = () => {
-  let { country } = properties;
+const updateStateSettingPopup = () => {
+  let { country} = properties;
+  const { population, period, type } = properties;
 
   country = country || 'All World';
-  countryInput.value = country;
-};
+  elements.country.value = country;
+  elements.period.checked = period;
+  elements.population.checked = population;
 
+  elements.type.forEach(el => {
+    if (el.value === type) {
+      el.checked = true;
+    }
+  });
+};
 
 export {
   createSettings,
   setSettingToggleElement,
-  updateCountryInPopupSetting,
+  updateStateSettingPopup,
 };

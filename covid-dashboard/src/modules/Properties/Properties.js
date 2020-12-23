@@ -1,4 +1,4 @@
-const properties = {
+export const properties = {
   country: false,
   iso3: null,
   period: false,
@@ -6,11 +6,11 @@ const properties = {
   type: 'cases'
 };
 
-const saveProperties = () => {
+export const saveProperties = () => {
   localStorage.setItem('covid-dashboard', JSON.stringify(properties));
 };
 
-const loadProperties = () => {
+export const loadProperties = () => {
   const loadData = JSON.parse(localStorage.getItem('covid-dashboard'));
   if (loadData) {
     properties.period = loadData.period;
@@ -21,7 +21,7 @@ const loadProperties = () => {
   }
 };
 
-const setProperties = (obj) => {
+export const setProperties = (obj) => {
   properties.country = obj.country;
   properties.period = obj.period;
   properties.population = obj.population;
@@ -29,11 +29,4 @@ const setProperties = (obj) => {
   properties.iso3 = obj.iso3;
 
   saveProperties();
-};
-
-export {
-  properties,
-  setProperties,
-  saveProperties,
-  loadProperties
 };
