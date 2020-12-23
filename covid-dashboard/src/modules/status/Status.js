@@ -1,6 +1,16 @@
 import { properties } from '../Properties/Properties';
+import { updateApp } from '../mainApp/updataApp';
+import { createListOfCountries } from '../settings/createListOfCountries';
+import { filterInputInPopup } from '../settings/fiterInputInPopup';
+import { localStorageCountryList } from '../mainApp/localStorageCountryList';
 
 let elementsDOM = null;
+let listOfCountries;
+
+setTimeout(() => {
+  listOfCountries = createListOfCountries('.status__list', 'status__item');
+  console.log (listOfCountries);
+}, 0);
 
 const setCurrentDate = (date) => {
   const options = {
@@ -13,30 +23,19 @@ const setCurrentDate = (date) => {
 };
 
 const setCount = (allPopulation = true) => {
-  if (allPopulation) {
-    elementsDOM.count.textContent = 'Per 100k population';
-  } else {
-    elementsDOM.count.textContent = 'All population';
-  }
+    elementsDOM.count.value = allPopulation;
 };
 
 const setType = (typeData) => {
-  elementsDOM.type.textContent = typeData.charAt(0).toUpperCase() + typeData.slice(1);
-  elementsDOM.type.className = `${typeData}`;
+  elementsDOM.type.value = typeData;
 };
 
 const setCountry = (country) => {
-  elementsDOM.country.textContent = country || 'All World';
+  elementsDOM.country.value = country || 'All World';
 };
 
 const setPeriod = (period) => {
-  let periodLoc;
-  if ( typeof period === 'boolean') {
-    periodLoc = period ? 'One last day' : 'For all period';
-  } else {
-    periodLoc = `${period} day(s)`;
-  }
-  elementsDOM.period.textContent = periodLoc ;
+  elementsDOM.period.value = period;
 };
 
 const updateStatusBar = () => {
@@ -48,18 +47,88 @@ const updateStatusBar = () => {
 
 const createStatusBar = (el) => {
   el.innerHTML =
-    '<div class="status__date"></div>' +
-    '<div class="status__country"></div>' +
-    '<div class ="status__period"></div>' +
-    '<div id ="status__type"></div>' +
-    '<div class="status__count"></div>';
+    `<div class="status__date"></div>
+    <div class="status__box">
+      <input class="status__country">
+      <ul class="status__list status__list_hide"></ul>
+    </div>
+    <select id ="status__type">
+      <option value="cases" class="cases">Cases</option>
+      <option value="recovered" class="recovered">Recovered</option>
+      <option value="deaths" class="deaths">Deaths</option>
+    </select>
+    <select class ="status__period">
+      <option value="false">All time</option>
+      <option value="true">Last day</option>
+    </select>
+    <select class="status__count">
+      <option value="false">All population</option>
+      <option value="true">Per 100k population</option>
+    </select>
+    <div ></div>`;
 
-  // Заносим в переменные нужные элементы верстки
   const date = el.querySelector('.status__date');
   const country = el.querySelector('.status__country');
   const period = el.querySelector('.status__period');
   const count = el.querySelector('.status__count');
   const type = el.querySelector('#status__type');
+
+  // change events
+  period.addEventListener('change', () => {
+    properties.period = !!period.selectedIndex;
+    updateApp();
+  });
+
+  count.addEventListener('change', () => {
+    properties.population = !!count.selectedIndex;
+    updateApp();
+  });
+
+  type.addEventListener('change', () => {
+    properties.type = type.value;
+    updateApp();
+  });
+
+  country.addEventListener('click', () => {
+    listOfCountries.classList.remove('status__list_hide');
+    document.querySelectorAll('.status__item').forEach((item) => {
+        item.addEventListener('click', () => {
+          // console.log ('click');
+          listOfCountries.classList.add('status__list_hide');
+          country.value = item.innerText;
+
+          let locCountry = item.innerText;
+          if (locCountry === "All World" || locCountry === "") {
+            locCountry = false;
+          }
+          properties.country = locCountry;
+          updateApp();
+        });
+      });
+  });
+
+  country.addEventListener('keyup', (e) => {
+    filterInputInPopup(elementsDOM.country, '.status__item');
+    const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
+    list.unshift('All World');
+    if (e.code === 'Enter') {
+      if (list.includes(elementsDOM.country.value) || 'All World' || '') {
+        listOfCountries.classList.add('status__list_hide');
+        country.value = elementsDOM.country.value;
+
+        let locCountry = elementsDOM.country.value;
+        if (locCountry === "All World" || locCountry === "") {
+          locCountry = false;
+        }
+        properties.country = locCountry;
+        updateApp();
+      } else {
+        country.value = '';
+      }
+    } else {
+      listOfCountries.classList.remove('status__list_hide');
+    }
+  });
 
   elementsDOM = {
     date,
@@ -74,6 +143,7 @@ const createStatusBar = (el) => {
 
   return elementsDOM;
 };
+
 
 export {
   createStatusBar,

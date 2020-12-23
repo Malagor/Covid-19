@@ -9,7 +9,6 @@ import { createMap } from '../map/map';
 import { createChart } from '../chart/chart';
 import { createStatusBar } from '../status/Status';
 import { createSettings } from '../settings/Settings';
-import { setHeaderSettingsToggle } from '../header/Header';
 import { loadProperties } from '../Properties/Properties';
 import { updateApp } from './updataApp';
 import { createTable } from '../table/table';
@@ -20,7 +19,6 @@ const elementsDOM = mainHTML();
 loadProperties();
 
 createSettings();
-setHeaderSettingsToggle(elementsDOM.header);
 createTable(elementsDOM.table);
 createTableCountries(elementsDOM.countries);
 

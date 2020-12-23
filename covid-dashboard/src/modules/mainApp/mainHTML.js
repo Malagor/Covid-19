@@ -16,10 +16,6 @@ export const mainHTML = () => {
       <div class="header__icon"></div>
       <div class="header__title">COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE)</div>
       <div class="toggle-menu">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
       </div>
     </header>
     <div id="status" class="status"></div>
