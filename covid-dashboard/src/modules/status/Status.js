@@ -95,23 +95,32 @@ const createStatusBar = (el) => {
         item.addEventListener('click', () => {
           // console.log ('click');
           listOfCountries.classList.add('status__list_hide');
-          properties.country = item.innerText;
           country.value = item.innerText;
+
+          let locCountry = item.innerText;
+          if (locCountry === "All World" || locCountry === "") {
+            locCountry = false;
+          }
+          properties.country = locCountry;
           updateApp();
         });
       });
   });
 
   country.addEventListener('keyup', (e) => {
-    console.log ('countryclick');
     filterInputInPopup(elementsDOM.country, '.status__item');
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
     if (e.code === 'Enter') {
-      if (list.includes(elementsDOM.country.value)) {
+      if (list.includes(elementsDOM.country.value) || 'All World' || '') {
         listOfCountries.classList.add('status__list_hide');
-        properties.country = elementsDOM.country.value;
         country.value = elementsDOM.country.value;
+
+        let locCountry = elementsDOM.country.value;
+        if (locCountry === "All World" || locCountry === "") {
+          locCountry = false;
+        }
+        properties.country = locCountry;
         updateApp();
       } else {
         country.value = '';
