@@ -23,18 +23,10 @@ const setCurrentDate = (date) => {
 };
 
 const setCount = (allPopulation = true) => {
-  // if (allPopulation) {
-  //   elementsDOM.count.textContent = 'Per 100k population';
-  // } else {
-  //   elementsDOM.count.textContent = 'All population';
     elementsDOM.count.value = allPopulation;
-  // }
 };
 
 const setType = (typeData) => {
-  // const type = typeData.charAt(0).toUpperCase() + typeData.slice(1);
-  // elementsDOM.type.className = `${typeData}`;
-
   elementsDOM.type.value = typeData;
 };
 
@@ -43,13 +35,6 @@ const setCountry = (country) => {
 };
 
 const setPeriod = (period) => {
-  // let periodLoc;
-  // if ( typeof period === 'boolean') {
-  //   periodLoc = period ? 'One last day' : 'For all period';
-  // } else {
-  //   periodLoc = `${period} day(s)`;
-  // }
-  // elementsDOM.period.textContent = periodLoc ;
   elementsDOM.period.value = period;
 };
 
@@ -88,7 +73,6 @@ const createStatusBar = (el) => {
   const count = el.querySelector('.status__count');
   const type = el.querySelector('#status__type');
 
-  // TODO: Обновить состояние popup после установки новых значенений
   // change events
   period.addEventListener('change', () => {
     properties.period = !!period.selectedIndex;
@@ -107,26 +91,33 @@ const createStatusBar = (el) => {
 
   country.addEventListener('click', () => {
     listOfCountries.classList.remove('status__list_hide');
-    document.querySelectorAll('.status-item').forEach((item) => {
+    document.querySelectorAll('.status__item').forEach((item) => {
         item.addEventListener('click', () => {
-          console.log ('click');
-          country.value = item.innerText;
+          // console.log ('click');
           listOfCountries.classList.add('status__list_hide');
+          properties.country = item.innerText;
+          country.value = item.innerText;
+          updateApp();
         });
       });
   });
-  
+
   country.addEventListener('keyup', (e) => {
     console.log ('countryclick');
-    filterInputInPopup(elementsDOM.country, '.status-item');
+    filterInputInPopup(elementsDOM.country, '.status__item');
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
     if (e.code === 'Enter') {
       if (list.includes(elementsDOM.country.value)) {
         listOfCountries.classList.add('status__list_hide');
+        properties.country = elementsDOM.country.value;
+        country.value = elementsDOM.country.value;
+        updateApp();
       } else {
         country.value = '';
       }
+    } else {
+      listOfCountries.classList.remove('status__list_hide');
     }
   });
 
