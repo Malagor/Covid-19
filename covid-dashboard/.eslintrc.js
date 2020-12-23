@@ -18,6 +18,8 @@ module.exports = {
   "rules": {
     "no-console": "off",
     "no-underscore-dangle": 0,
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "import/prefer-default-export": 0,
+    "import/no-cycle": 0,
   }
 };

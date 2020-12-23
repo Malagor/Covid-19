@@ -1,3 +1,113 @@
+@import "../../scss/_misc/mixins.scss";
+@import "../../scss/_misc/variables";
+
 .chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+
   grid-area: chart;
+}
+
+.chart__wrapper {
+  width: 100%;
+  height: 90%;
+}
+
+.chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+
+.chart__checkboxes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 94%;
+  height: 100%;
+  padding: 0 23% 0 33%;
+}
+
+.chart__label {
+  font-size: rem(14px);
+}
+
+.chart__checkbox:checked,
+.chart__checkbox:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.chart__checkbox:checked + .chart__label,
+.chart__checkbox:not(:checked) + .chart__label {
+  position: relative;
+  display: inline-block;
+  padding-left: rem(28px);
+  line-height: rem(20px);
+  cursor: pointer;
+}
+
+.chart__checkbox:checked + .chart__label:before,
+.chart__checkbox:not(:checked) + .chart__label:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  left: 0;
+  width: rem(14px);
+  height: rem(14px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: rem(1px) solid rgb(189, 189, 189);
+}
+
+.chart__checkbox:checked + .chart__label:before,
+.chart__checkbox:not(:checked) + .chart__label:before {
+  border-radius: 50%;
+}
+
+.chart__checkbox:checked + .chart__label:after,
+.chart__checkbox:not(:checked) + .chart__label:after {
+  content: "";
+  position: absolute;
+  transition: all 0.2s ease;
+}
+
+.chart__checkbox:checked + .chart__label:after,
+.chart__checkbox:not(:checked) + .chart__label:after {
+  top: rem(2px);
+  left: rem(3px);
+  width: rem(10px);
+  height: rem(5px);
+  border-radius: rem(1px);
+  transform: rotate(-45deg);
+}
+
+#diseased:checked + .chart__label:after,
+#diseased:not(:checked) + .chart__label:after {
+  border-bottom: rem(3px) solid $color-cases;
+  border-left: rem(3px) solid $color-cases;
+}
+
+#recovered:checked + .chart__label:after,
+#recovered:not(:checked) + .chart__label:after {
+  border-bottom: rem(3px) solid $color-recovered;
+  border-left: rem(3px) solid $color-recovered;
+}
+
+#deaths:checked + .chart__label:after,
+#deaths:not(:checked) + .chart__label:after {
+  border-bottom: rem(3px) solid  $color-deaths;
+  border-left: rem(3px) solid $color-deaths;
+}
+
+.chart__checkbox:not(:checked) + .chart__label:after {
+  opacity: 0;
+}
+
+.chart__checkbox:checked + .chart__label:after {
+  opacity: 1;
 }

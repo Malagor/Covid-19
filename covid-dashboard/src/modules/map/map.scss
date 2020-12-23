@@ -1,7 +1,188 @@
+@import "../../scss/_misc/variables";
+
 .map {
   grid-area: map;
 }
 
 .flag {
   width: 1rem;
+}
+
+
+$blue-grey-100: rgba(0, 0, 255, 0.1);
+$blue-grey-900: rgba(186, 179, 255, 0.9);
+$red-800: rgba(255, 0, 0, 0.81);
+
+.icon-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.6em;
+  height: 3.6em;
+  font-size: 0.7em;
+  color: white;
+  //font-weight: bold;
+  //background-color: $red-800;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(black, 0.9);
+
+  &.cases {
+    background-color: $color-cases;
+  }
+
+  &.deaths {
+    color: #000000;
+    background-color: #ebb2b2;
+  }
+
+  &.recovered {
+    color: #000000;
+    background-color: #8abd8a;
+  }
+
+  &:hover {
+    .icon-marker-tooltip {
+      display: block;
+      transform: scale(1);
+    }
+  }
+}
+
+.icon-marker-tooltip {
+  position: absolute;
+  bottom: 100%;
+  display: block;
+  margin-bottom: 1em;
+  padding: 1em;
+  //width: 16em;
+  font-size: 1.4em;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 0.4em;
+  box-shadow: 0 3px 5px rgba(black, 0.9);
+  transform: scale(0);
+  transition: 0.2s;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -0.6em;
+    left: 50%;
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    margin-left: -0.7em;
+    color: #000000;
+    background-color: #ffffff;
+    transform: rotate(45deg);
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+.marker-tooltips__title {
+  display: flex;
+  align-items: center;
+}
+
+.marker-tooltips__flag {
+  width: 2rem;
+  height: 1.2rem;
+  margin-right: 1rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+.marker-tooltips__country {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.marker-tooltips__label {
+  width: 6em;
+  font-weight: bold;
+}
+
+.marker-tooltips__list {
+  display: flex;
+  flex-direction: column;
+
+  & .marker-tooltips__item {
+    display: flex;
+    order: 1;
+
+    &.cases,
+    &.deaths,
+    &.recovered {
+      order: 0;
+      font-size: 1.2em;
+      background: #ffffff;
+    }
+
+    &.cases {
+      color: $color-cases;
+    }
+
+    &.deaths {
+      color: $color-deaths;
+    }
+
+    &.recovered {
+      color: green;
+    }
+  }
+}
+
+// LEGEND
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777777;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555555;
+}
+.legend i {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.legend .icon-marker {
+  margin-right: 0.6rem;
+}
+
+.legend h3 {
+  margin-bottom: 0.4rem;
+}
+
+.legend .icon-marker {
+  width: 3em;
+  height: 3em;
+  font-size: 0.7em;
 }
