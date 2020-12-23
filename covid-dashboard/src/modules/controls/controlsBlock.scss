@@ -6,6 +6,12 @@
   align-items: center;
   width: rem(75px);
   height: 100%;
+  @media screen and (max-width: 992px) {
+    width: rem(60px);
+  }
+  @media screen and (max-width: 768px) {
+    width: rem(55px);
+  }
 }
 
 .controls-block_params,
@@ -23,17 +29,31 @@
     transform: scale(1.05);
     opacity: 1;
   }
+  @media screen and (max-width: 992px) {
+    width: rem(21px);
+    height: rem(21px);
+  }
+  @media screen and (max-width: 768px) {
+    width: rem(20px);
+    height: rem(20px);
+  }
 }
 
 .controls-block_params > svg,
 .controls-block_fullscreen > svg {
   fill: rgba(128, 128, 128, 1);
 }
-
+.fullScreen-overlay {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 .activeFullScreen {
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 1001;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }
