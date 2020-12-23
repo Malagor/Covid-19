@@ -15,6 +15,7 @@ export const localStorageCountryList = (data, command = 'save') => {
 
     return countryList;
   }
+
   if (command === 'load') {
     try {
       return JSON.parse(localStorage.getItem('countryList'));

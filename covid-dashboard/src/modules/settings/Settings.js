@@ -41,7 +41,6 @@ const getFormData = () => {
   const period = form.period.checked;
   const type = form.type.value;
 
-  // country = (country === 'All World' || country === '') ? false : country;
   const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
   if (list.includes(form.country.value) || country === 'All World') {
     country = (country === 'All World' || country === '') ? false : country;
@@ -70,7 +69,7 @@ const createSettings = () => {
 
   countryInput.addEventListener('click', () => {
     listOfCountries.classList.remove('setting__list_hide');
-    document.querySelectorAll('.setting-list-item').forEach((item) => { 
+    document.querySelectorAll('.setting-list-item').forEach((item) => {
         item.addEventListener('click', () => {
           countryInput.value = item.innerText;
           listOfCountries.classList.add('setting__list_hide');
@@ -89,7 +88,7 @@ const createSettings = () => {
         countryInput.value = '';
       }
     }
-  }); 
+  });
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
