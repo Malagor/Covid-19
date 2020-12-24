@@ -60,7 +60,7 @@
 
     .countries-list {
       width: 100%;
-      max-height: rem(420px);
+      height: rem(420px);
       margin-top: rem(10px);
       overflow-y: scroll;
 
@@ -153,8 +153,7 @@
 .fullScreen {
   .countries-wrapper {
     .countries-list {
-      max-height: 500px;
-      margin-top: 10%;
+      height: 500px;
     }
   }
 }
@@ -172,7 +171,7 @@
       }
 
       .countries-list {
-        max-height: 500px;
+        height: 500px;
       }
 
       .country-number {
@@ -196,8 +195,7 @@
       }
 
       .countries-list {
-        max-height: 500px;
-        margin-top: 10%;
+        height: 500px;
       }
 
       .country-number {
@@ -215,8 +213,24 @@
   .countries {
     .countries-wrapper {
       margin-top: 0;
+
+      .countries-title {
+        font-size: rem(18px);
+      }
+
+      .country-name {
+        font-size: rem(16px);
+      }
       .countries-list {
-        max-height: rem(130px);
+        height: rem(130px);
+      }
+
+      .country-number {
+        font-size: rem(16px);
+      }
+
+      .toggle-cases {
+        font-size: rem(14px);
       }
     }
   }
@@ -225,7 +239,7 @@
     .countries-wrapper {
       margin-top: 10%;
       .countries-list {
-        max-height: rem(500px);
+        height: rem(500px);
       }
     }
   }
