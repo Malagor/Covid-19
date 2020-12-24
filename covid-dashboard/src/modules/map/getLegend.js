@@ -19,7 +19,7 @@ export const getLegend = () => {
         const label = (gradeArr[idx + 1]) ? `${reduceEntryCases(gradeArr[idx])} - ${reduceEntryCases(gradeArr[idx + 1])}` : `> ${reduceEntryCases(gradeArr[idx])}`;
         block.innerHTML += `
         <div class="legend__item">
-          <div class="icon-marker ${type} grade${idx + 1}">${reduceEntryCases(gradeArr[idx] + 10)}</div><div>${label}</div>
+          <div class="icon-marker ${type} grade${idx + 1} legend__marker"></div><div class="legend__label">${label}</div>
         </div>
         `
       });
