@@ -110,7 +110,7 @@ const createStatusBar = (el) => {
     filterInputInPopup(elementsDOM.country, '.status__item');
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
-    if (e.code === 'Enter') {
+    if (e.key === 'Enter') {
       if (list.includes(elementsDOM.country.value) || 'All World' || '') {
         listOfCountries.classList.add('status__list_hide');
         country.value = elementsDOM.country.value;
