@@ -9,7 +9,6 @@ let listOfCountries;
 
 setTimeout(() => {
   listOfCountries = createListOfCountries('.status__list', 'status__item');
-  console.log (listOfCountries);
 }, 0);
 
 const setCurrentDate = (date) => {

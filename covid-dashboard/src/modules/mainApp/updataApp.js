@@ -17,7 +17,6 @@ import { updateStateSettingPopup } from '../settings/Settings';
 import { loaderOn } from '../loader/loader';
 
 export const updateApp = () => {
-  console.log(properties);
   saveProperties();
   updateStatusBar();
   updateStateSettingPopup();
