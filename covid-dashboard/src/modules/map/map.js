@@ -1,7 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet/dist/leaflet';
 import { getPopupTextHTML } from '../mainApp/getPopupTextHTML';
-// eslint-disable-next-line import/no-cycle
 import { printBorderCountries } from './printBorderCountries';
 import { getLegend } from './getLegend';
 import { setControlsToMap } from './setControlsToMap';
@@ -10,6 +9,7 @@ import { getControlsBlockHTML } from '../controls/controlsBlock';
 
 const TOKEN_API = 'pk.eyJ1IjoibWFsYWdvciIsImEiOiJja2loZnUwdDgwNmpyMnNwYnNwaDBnNjlmIn0.syPwz4D9ZNf8AIJ71a0aUQ';
 let map = null;
+let legend = null;
 let geoJsonLayers;
 
 const initMap = (coordCenter, zoomRate) => {
@@ -39,13 +39,12 @@ const initMap = (coordCenter, zoomRate) => {
   const mapControls = setControlsToMap();
   mapControls.addTo(map);
 
-  const legend = getLegend();
+  legend = getLegend();
   legend.addTo(map);
 };
 
 
 const setMarksToMap = (arr) => {
-
   const geoJson = {
     type: 'FeatureCollection',
     features: arr.map((country = {}) => {
@@ -75,15 +74,14 @@ const setMarksToMap = (arr) => {
       });
     },
   });
-  geoJsonLayers.remove(map);
+
+  legend.remove(map);
+  legend = getLegend();
+  legend.addTo(map);
+
+  geoJsonLayers.removeFrom(map);
   geoJsonLayers.addTo(map);
 };
-
-// const events = () => {
-//   map.addEventListener('click', (ev) => {
-//     console.log('Click to map', ev);
-//   });
-// };
 
 const createMap = (el) => {
   map = L.map(el);
@@ -93,8 +91,6 @@ const createMap = (el) => {
   const mapControlsBlock = document.querySelector('.map__controls');
   getControlsBlockHTML(mapControlsBlock, el);
   printBorderCountries(map);
-
-  // events();
 };
 
 
