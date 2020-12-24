@@ -1,7 +1,9 @@
 import { properties } from '../Properties/Properties';
+import { reduceEntryCases } from '../map/reduceEntryCases';
+import { getGradeIndex } from '../map/getGradient';
 
 export const getPopupTextHTML = (feature) => {
-  const { type } = properties;
+  const { type, population} = properties;
   const { properties: props = {} } = feature;
   let titleString;
 
@@ -26,12 +28,12 @@ export const getPopupTextHTML = (feature) => {
     default:
   }
 
-  if (titleString > 1000) {
-    titleString = `${titleString.toString().slice(0, -3)}k+`;
-  }
+  const gradeIndex = getGradeIndex(titleString, type, population);
+  titleString = reduceEntryCases(titleString);
+
 
   return `
-       <div class="icon-marker ${type}">
+       <div class="icon-marker ${type} grade${gradeIndex}">
            <div class="icon-marker-tooltip">
            <div class="marker-tooltips__title">
              <div class="marker-tooltips__flag"><img src="${flag}" alt=""></div>

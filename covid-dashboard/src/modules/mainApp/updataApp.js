@@ -13,13 +13,13 @@ import { processingDataForMap } from './processingDataForMap';
 import { setMarksToMap } from '../map/map';
 import { localStorageCountryList } from './localStorageCountryList';
 import { updateStatusBar } from '../status/Status';
-import { updateCountryInPopupSetting } from '../settings/Settings';
+import { updateStateSettingPopup } from '../settings/Settings';
 import { loaderOn } from '../loader/loader';
 
 export const updateApp = () => {
   saveProperties();
   updateStatusBar();
-  updateCountryInPopupSetting();
+  updateStateSettingPopup();
 
   let { period } = properties;
   if (typeof period === 'boolean') {
@@ -107,12 +107,14 @@ export const updateApp = () => {
           const { resultArr, locCountry } = processingDataForChart(fullArrayCountries);
           changeChartData(resultArr, locCountry);
 
-          loaderOn(false);
-
         })
         .catch((err) => {
           console.log("I can't convert country data", err);
+        })
+        .finally(() => {
+          loaderOn(false);
         });
+
     })
     .catch((err) => {
       console.log("Can't get general data about countries!", err);

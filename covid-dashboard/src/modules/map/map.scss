@@ -26,19 +26,95 @@ $red-800: rgba(255, 0, 0, 0.81);
   //background-color: $red-800;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(black, 0.9);
+
   &.cases {
-    background-color: $color-cases;
+
+
+    &.grade1 {
+      background-color: #c6dbef;
+      color: #000000;
+    }
+
+    &.grade2 {
+      background-color: #9ecae1;
+    }
+
+    &.grade3 {
+      background-color: #6baed6;
+    }
+
+    &.grade4 {
+      background-color: #4292c6;
+    }
+
+    &.grade5 {
+      background-color: #2171b5;
+    }
+
+    &.grade6 {
+      background-color: #084594;
+      color: #ffffff;
+    }
   }
 
   &.deaths {
     color: #000000;
-    background-color: #ebb2b2;
+
+    &.grade1 {
+      background-color: #fdd49e;
+    }
+
+    &.grade2 {
+      background-color: #fdbb84;
+    }
+
+    &.grade3 {
+      background-color: #fc8d59;
+    }
+
+    &.grade4 {
+      background-color: #ef6548;
+    }
+
+    &.grade5 {
+      background-color: #d7301f;
+    }
+
+    &.grade6 {
+      background-color: #990000;
+      color: #ffffff;
+    }
   }
 
   &.recovered {
     color: #000000;
-    background-color: #8abd8a;
+
+    &.grade1 {
+      background-color: #c7e9c0;
+    }
+
+    &.grade2 {
+      background-color: #a1d99b;
+    }
+
+    &.grade3 {
+      background-color: #74c476;
+    }
+
+    &.grade4 {
+      background-color: #41ab5d;
+    }
+
+    &.grade5 {
+      background-color: #238b45;
+    }
+
+    &.grade6 {
+      background-color: #005a32;
+      color: #ffffff;
+    }
   }
+
 
   &:hover {
     .icon-marker-tooltip {
@@ -145,10 +221,11 @@ $red-800: rgba(255, 0, 0, 0.81);
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+
 .info h4 {
   margin: 0 0 5px;
   color: #777777;
@@ -158,6 +235,7 @@ $red-800: rgba(255, 0, 0, 0.81);
   line-height: 18px;
   color: #555555;
 }
+
 .legend i {
   float: left;
   width: 18px;
@@ -184,4 +262,15 @@ $red-800: rgba(255, 0, 0, 0.81);
   width: 3em;
   height: 3em;
   font-size: 0.7em;
+}
+
+.legend .legend__marker {
+  border-right: 0;
+  width: 1rem;
+  height: 1rem;
+  box-shadow: none;
+}
+
+.legend .legend__label {
+  font-size: 0.8rem;
 }
