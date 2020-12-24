@@ -10,7 +10,7 @@ import settingsHTML from './settingsHTML';
 import { properties, setProperties } from '../Properties/Properties';
 import { updateApp } from '../mainApp/updataApp';
 import { createListOfCountries } from './createListOfCountries';
-import { filterInputInPopup } from './fiterInputInPopup';
+import { filterInputInPopup } from './filterInputInPopup';
 import { localStorageCountryList } from '../mainApp/localStorageCountryList';
 
 let popup;

@@ -1,8 +1,9 @@
 import { properties } from '../Properties/Properties';
 import { updateApp } from '../mainApp/updataApp';
 import { createListOfCountries } from '../settings/createListOfCountries';
-import { filterInputInPopup } from '../settings/fiterInputInPopup';
+
 import { localStorageCountryList } from '../mainApp/localStorageCountryList';
+import { filterInputInPopup } from '../settings/filterInputInPopup';
 
 let elementsDOM = null;
 let listOfCountries;
