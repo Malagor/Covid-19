@@ -1,7 +1,5 @@
 import { properties } from '../Properties/Properties';
 
-// const { country, population, period } = properties;
-
 export const getDataforAllWorld = (data, currCases, currRecovered, currDeaths) => {
   const dataForAllWorld = {
     country: 'All World',

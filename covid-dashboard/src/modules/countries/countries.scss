@@ -119,11 +119,12 @@
     .countries-list::-webkit-scrollbar {
       width: 10px;
       background-color: $color-background-light;
+      border-radius: 3px;
     }
 
     .countries-list::-webkit-scrollbar-thumb {
       height: 20px;
-      background-color: $color-background-dark;
+      background-color: $color-background-superdark;
       border-radius: 3px;
     }
 
