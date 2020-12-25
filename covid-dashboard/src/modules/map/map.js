@@ -45,6 +45,9 @@ const initMap = (coordCenter, zoomRate) => {
 
 
 const setMarksToMap = (arr) => {
+  if (geoJsonLayers) {
+    geoJsonLayers.remove();
+  }
   const geoJson = {
     type: 'FeatureCollection',
     features: arr.map((country = {}) => {
@@ -79,7 +82,6 @@ const setMarksToMap = (arr) => {
   legend = getLegend();
   legend.addTo(map);
 
-  geoJsonLayers.removeFrom(map);
   geoJsonLayers.addTo(map);
 };
 
