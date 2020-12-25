@@ -1,21 +1,19 @@
 import { properties } from '../Properties/Properties';
 
-// const { country, population, period } = properties;
-
-const getDataforAllWorld = (data, currCases, currRecovered, currDeaths) => {
+export const getDataforAllWorld = (data, currCases, currRecovered, currDeaths) => {
   const dataForAllWorld = {
     country: 'All World',
-    cases: data.map((elem) => elem[currCases]).reduce((s,elem) => s + elem, 0),
-    recovered: data.map((elem) => elem[currRecovered]).reduce((s,elem) => s + elem, 0),
-    deaths: data.map((elem) => elem[currDeaths]).reduce((s,elem) => s + elem, 0),
-  } 
+    cases: +(data.map((elem) => elem[currCases]).reduce((s,elem) => s + elem, 0).toFixed(1)),
+    recovered: +(data.map((elem) => elem[currRecovered]).reduce((s,elem) => s + elem, 0).toFixed(1)),
+    deaths: +(data.map((elem) => elem[currDeaths]).reduce((s,elem) => s + elem, 0).toFixed(1)),
+  };
   if (properties.population) {
     dataForAllWorld.cases = (dataForAllWorld.cases).toFixed(1);
     dataForAllWorld.recovered = (dataForAllWorld.recovered).toFixed(1);
     dataForAllWorld.deaths = (dataForAllWorld.deaths).toFixed(1);
   }
   return dataForAllWorld;
-}
+};
 
 export const processingDataForTable = (data) => {
   const { country, population, period } = properties;
@@ -44,16 +42,16 @@ export const processingDataForTable = (data) => {
       }
   } else if (period) {
     if (population) {
-      dataForTable = getDataforAllWorld(data, 'casesTodayPer100k', 'recoveredTodayPer100k', 
+      dataForTable = getDataforAllWorld(data, 'casesTodayPer100k', 'recoveredTodayPer100k',
       'deathsTodayPer100k');
     } else {
-      dataForTable = getDataforAllWorld(data, 'casesToday', 'recoveredToday', 'deathsToday'); 
+      dataForTable = getDataforAllWorld(data, 'casesToday', 'recoveredToday', 'deathsToday');
     }
   } else if (population) {
     dataForTable = getDataforAllWorld(data, 'casesPer100k', 'recoveredPer100k', 'deathsPer100k');
   } else {
     dataForTable = getDataforAllWorld(data, 'cases', 'recovered', 'deaths');
   }
-  
+
   return dataForTable;
-}  
+};

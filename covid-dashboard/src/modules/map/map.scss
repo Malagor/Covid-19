@@ -8,10 +8,31 @@
   width: 1rem;
 }
 
-
 $blue-grey-100: rgba(0, 0, 255, 0.1);
 $blue-grey-900: rgba(186, 179, 255, 0.9);
 $red-800: rgba(255, 0, 0, 0.81);
+
+// color for map markers
+$cases-grade1: #c6dbef;
+$cases-grade2: #9ecae1;
+$cases-grade3:#6baed6;
+$cases-grade4: #4292c6;
+$cases-grade5: #2171b5;
+$cases-grade6: #084594;
+
+$deaths-grade1: #fdd49e;
+$deaths-grade2: #fdbb84;
+$deaths-grade3: #fc8d59;
+$deaths-grade4: #ef6548;
+$deaths-grade5: #d7301f;
+$deaths-grade6: #990000;
+
+$recovered-grade1: #c7e9c0;
+$recovered-grade2: #a1d99b;
+$recovered-grade3: #74c476;
+$recovered-grade4: #41ab5d;
+$recovered-grade5: #238b45;
+$recovered-grade6: #005a32;
 
 .icon-marker {
   position: relative;
@@ -22,38 +43,34 @@ $red-800: rgba(255, 0, 0, 0.81);
   height: 3.6em;
   font-size: 0.7em;
   color: white;
-  //font-weight: bold;
-  //background-color: $red-800;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(black, 0.9);
 
   &.cases {
-
-
     &.grade1 {
-      background-color: #c6dbef;
       color: #000000;
+      background-color: $cases-grade1;
     }
 
     &.grade2 {
-      background-color: #9ecae1;
+      background-color: $cases-grade2;
     }
 
     &.grade3 {
-      background-color: #6baed6;
+      background-color: $cases-grade3;
     }
 
     &.grade4 {
-      background-color: #4292c6;
+      background-color: $cases-grade4;
     }
 
     &.grade5 {
-      background-color: #2171b5;
+      background-color: $cases-grade5;
     }
 
     &.grade6 {
-      background-color: #084594;
       color: #ffffff;
+      background-color: $cases-grade6;
     }
   }
 
@@ -61,28 +78,28 @@ $red-800: rgba(255, 0, 0, 0.81);
     color: #000000;
 
     &.grade1 {
-      background-color: #fdd49e;
+      background-color: $deaths-grade1;
     }
 
     &.grade2 {
-      background-color: #fdbb84;
+      background-color: $deaths-grade2;
     }
 
     &.grade3 {
-      background-color: #fc8d59;
+      background-color: $deaths-grade3;
     }
 
     &.grade4 {
-      background-color: #ef6548;
+      background-color: $deaths-grade4;
     }
 
     &.grade5 {
-      background-color: #d7301f;
+      background-color: $deaths-grade5;
     }
 
     &.grade6 {
-      background-color: #990000;
       color: #ffffff;
+      background-color: $deaths-grade6;
     }
   }
 
@@ -90,31 +107,30 @@ $red-800: rgba(255, 0, 0, 0.81);
     color: #000000;
 
     &.grade1 {
-      background-color: #c7e9c0;
+      background-color: $recovered-grade1;
     }
 
     &.grade2 {
-      background-color: #a1d99b;
+      background-color: $recovered-grade2;
     }
 
     &.grade3 {
-      background-color: #74c476;
+      background-color: $recovered-grade3;
     }
 
     &.grade4 {
-      background-color: #41ab5d;
+      background-color: $recovered-grade4;
     }
 
     &.grade5 {
-      background-color: #238b45;
+      background-color: $recovered-grade5;
     }
 
     &.grade6 {
-      background-color: #005a32;
       color: #ffffff;
+      background-color: $recovered-grade6;
     }
   }
-
 
   &:hover {
     .icon-marker-tooltip {
@@ -130,7 +146,6 @@ $red-800: rgba(255, 0, 0, 0.81);
   display: block;
   margin-bottom: 1em;
   padding: 1em;
-  //width: 16em;
   font-size: 1.4em;
   color: #000000;
   background-color: #ffffff;
@@ -265,9 +280,9 @@ $red-800: rgba(255, 0, 0, 0.81);
 }
 
 .legend .legend__marker {
-  border-right: 0;
   width: 1rem;
   height: 1rem;
+  border-right: 0;
   box-shadow: none;
 }
 

@@ -1,8 +1,9 @@
 import { properties } from '../Properties/Properties';
 import { updateApp } from '../mainApp/updataApp';
 import { createListOfCountries } from '../settings/createListOfCountries';
-import { filterInputInPopup } from '../settings/fiterInputInPopup';
+
 import { localStorageCountryList } from '../mainApp/localStorageCountryList';
+import { filterInputInPopup } from '../settings/filterInputInPopup';
 
 let elementsDOM = null;
 let listOfCountries;
@@ -111,7 +112,7 @@ const createStatusBar = (el) => {
     const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
     list.unshift('All World');
     if (e.key === 'Enter') {
-      if (list.includes(elementsDOM.country.value) || 'All World' || '') {
+      if (list.includes(elementsDOM.country.value) || elementsDOM.country.value === 'All World' || elementsDOM.country.value === '') {
         listOfCountries.classList.add('status__list_hide');
         country.value = elementsDOM.country.value;
 
