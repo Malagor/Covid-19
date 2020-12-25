@@ -1,4 +1,4 @@
-const grades = {
+export const grades = {
   allWorld: {
     cases: [0, 100, 1000, 10000, 100000, 1000000],
     deaths: [0, 500, 1000, 5000, 10000, 100000],
