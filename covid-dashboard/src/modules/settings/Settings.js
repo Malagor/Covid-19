@@ -10,7 +10,7 @@ import settingsHTML from './settingsHTML';
 import { properties, setProperties } from '../Properties/Properties';
 import { updateApp } from '../mainApp/updataApp';
 import { createListOfCountries } from './createListOfCountries';
-import { filterInputInPopup } from './fiterInputInPopup';
+import { filterInputInPopup } from './filterInputInPopup';
 import { localStorageCountryList } from '../mainApp/localStorageCountryList';
 
 let popup;
@@ -41,7 +41,6 @@ const getFormData = () => {
   const period = form.period.checked;
   const type = form.type.value;
 
-  // country = (country === 'All World' || country === '') ? false : country;
   const list = localStorageCountryList(null, 'load').map((elem) => elem.country);
   if (list.includes(form.country.value) || country === 'All World') {
     country = (country === 'All World' || country === '') ? false : country;

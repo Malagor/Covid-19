@@ -28,11 +28,9 @@ $red-800: rgba(255, 0, 0, 0.81);
   box-shadow: 0 2px 5px rgba(black, 0.9);
 
   &.cases {
-
-
     &.grade1 {
-      background-color: #c6dbef;
       color: #000000;
+      background-color: #c6dbef;
     }
 
     &.grade2 {
@@ -52,8 +50,8 @@ $red-800: rgba(255, 0, 0, 0.81);
     }
 
     &.grade6 {
-      background-color: #084594;
       color: #ffffff;
+      background-color: #084594;
     }
   }
 
@@ -81,8 +79,8 @@ $red-800: rgba(255, 0, 0, 0.81);
     }
 
     &.grade6 {
-      background-color: #990000;
       color: #ffffff;
+      background-color: #990000;
     }
   }
 
@@ -110,8 +108,8 @@ $red-800: rgba(255, 0, 0, 0.81);
     }
 
     &.grade6 {
-      background-color: #005a32;
       color: #ffffff;
+      background-color: #005a32;
     }
   }
 
@@ -265,9 +263,9 @@ $red-800: rgba(255, 0, 0, 0.81);
 }
 
 .legend .legend__marker {
-  border-right: 0;
   width: 1rem;
   height: 1rem;
+  border-right: 0;
   box-shadow: none;
 }
 

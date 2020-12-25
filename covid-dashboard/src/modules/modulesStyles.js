@@ -1,7 +1,6 @@
 import './mainApp/mainApp.scss';
 import './header/header.scss';
 import './status/status.scss';
-import './cases/cases.scss';
 import './chart/chart.scss';
 import './countries/countries.scss';
 import './table/table.scss';
